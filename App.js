@@ -28,6 +28,12 @@ const App = () => {
     filter === 'delivered' ? setFilter('delivering') : setFilter('delivered');
   };
 
+  const fetchMorePost = () => {
+    alert(89);
+  };
+
+  const changeDeliveryStatus = () => {};
+
   useEffect(() => {
     const fistTenDeliveries = getFirstTenDeliveries();
     setDeliveries(fistTenDeliveries);
@@ -44,13 +50,12 @@ const App = () => {
         delivered={30}
         total={50}
       />
-      <View>
-        {layout === 'map' ? (
-          <MapViewComp deliveries={deliveries} />
-        ) : (
-          <List deliveries={deliveries} />
-        )}
-      </View>
+
+      {layout === 'map' ? (
+        <MapViewComp deliveries={deliveries} />
+      ) : (
+        <List deliveries={deliveries} fetchMorePost={fetchMorePost} />
+      )}
     </SafeAreaView>
   );
 };

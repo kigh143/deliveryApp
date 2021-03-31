@@ -7,13 +7,13 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     height: 56,
     backgroundColor: '#fff',
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     elevation: 2,
   },
 
   activeText: {
     fontSize: 18,
-    color: 'green',
+    color: '#28b17b',
     fontWeight: 'bold',
   },
 

@@ -13,3 +13,7 @@ export const getMoreDeliveries = index => {
 export const markAsDelivered = () => {};
 
 export const markAsDelivering = () => {};
+
+export const formatAddress = address => {
+  return address.trim().split(',');
+};
