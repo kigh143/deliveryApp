@@ -34,6 +34,8 @@ const App = () => {
         activeLayout={layout}
         changeFilter={changeFilter}
         changeLayout={changeLayout}
+        delivered={30}
+        total={50}
       />
       <View>{layout === 'map' ? <MapViewComp /> : <List />}</View>
     </SafeAreaView>

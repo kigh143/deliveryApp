@@ -2,7 +2,14 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './style';
 
-const Header = ({activeLayout, activeFilter, changeFilter, changeLayout}) => {
+const Header = ({
+  activeLayout,
+  activeFilter,
+  changeFilter,
+  changeLayout,
+  delivered,
+  total,
+}) => {
   return (
     <View style={styles.headerContainer}>
       <TouchableOpacity
@@ -21,7 +28,11 @@ const Header = ({activeLayout, activeFilter, changeFilter, changeLayout}) => {
           List
         </Text>
       </TouchableOpacity>
-      <Text>300 of 450</Text>
+      <View style={styles.tracker}>
+        <Text style={styles.counter}>
+          {delivered} of {total}
+        </Text>
+      </View>
       <TouchableOpacity
         style={styles.filterButton}
         onPress={() => changeFilter()}>

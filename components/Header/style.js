@@ -4,7 +4,6 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     height: 56,
     backgroundColor: '#fff',
@@ -15,7 +14,7 @@ export default styles = StyleSheet.create({
   activeText: {
     fontSize: 18,
     color: 'green',
-    fontWeight: '800',
+    fontWeight: 'bold',
   },
 
   inActiveText: {
@@ -25,9 +24,21 @@ export default styles = StyleSheet.create({
   },
 
   filterButton: {
-    textAlign: 'right',
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
   layoutButton: {
     textAlign: 'left',
+    flex: 1,
+  },
+  tracker: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  counter: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
