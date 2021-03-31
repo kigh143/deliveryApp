@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import DeliveryCard from '../DeliveryCard/index';
-const List = () => {
+const DeliveryCard = () => {
   return (
     <View>
       <Text></Text>
@@ -9,4 +8,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default DeliveryCard;
