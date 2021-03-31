@@ -4,6 +4,8 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
   mapViewContainer: {
     height: '100%',
-    backgroundColor: 'green',
+  },
+  map: {
+    height: '100%',
   },
 });
