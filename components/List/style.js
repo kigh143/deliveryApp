@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native';
 
 export default styles = StyleSheet.create({
   listContainer: {
-    height: '100%',
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
+    height: '92%',
+    backgroundColor: '#f1f1f1',
+    paddingBottom: 20,
   },
 });

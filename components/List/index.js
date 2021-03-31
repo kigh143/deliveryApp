@@ -4,12 +4,14 @@ import DeliveryCard from '../DeliveryCard/index';
 import styles from './style';
 const List = ({deliveries, fetchMorePost}) => {
   return (
-    <FlatList
-      data={deliveries}
-      renderItem={({item}) => <DeliveryCard key={item.id} delivery={item} />}
-      keyExtractor={item => item.id}
-      // onEndReached={() => fetchMorePost()}
-    />
+    <View style={styles.listContainer}>
+      <FlatList
+        data={deliveries}
+        renderItem={({item}) => <DeliveryCard key={item.id} delivery={item} />}
+        keyExtractor={item => item.id}
+        // onEndReached={() => fetchMorePost()}
+      />
+    </View>
   );
 };
 

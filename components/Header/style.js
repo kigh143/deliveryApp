@@ -5,10 +5,11 @@ export default styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 56,
+    height: '8%',
     backgroundColor: '#fff',
     paddingHorizontal: 10,
     elevation: 2,
+    marginBottom: 4,
   },
 
   activeText: {
