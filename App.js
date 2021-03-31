@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 import Header from './components/Header/index';
 import DeliveryCard from './components/DeliveryCard/index';
 import List from './components/List/index';
 import MapViewComp from './components/MapViewComp/index';
+import {getFirstTenDeliveries} from './apiMock/index';
 
 interface Delivery {
   id: string;
@@ -17,6 +18,7 @@ interface Delivery {
 const App = () => {
   const [layout, setLayout] = useState('map');
   const [filter, setFilter] = useState('delivered');
+  const [deliveries, setDeliveries] = useState([]);
 
   const changeLayout = () => {
     layout === 'map' ? setLayout('list') : setLayout('map');
@@ -25,6 +27,11 @@ const App = () => {
   const changeFilter = () => {
     filter === 'delivered' ? setFilter('delivering') : setFilter('delivered');
   };
+
+  useEffect(() => {
+    const fistTenDeliveries = getFirstTenDeliveries();
+    setDeliveries(fistTenDeliveries);
+  }, []);
 
   return (
     <SafeAreaView>
@@ -37,7 +44,13 @@ const App = () => {
         delivered={30}
         total={50}
       />
-      <View>{layout === 'map' ? <MapViewComp /> : <List />}</View>
+      <View>
+        {layout === 'map' ? (
+          <MapViewComp deliveries={deliveries} />
+        ) : (
+          <List deliveries={deliveries} />
+        )}
+      </View>
     </SafeAreaView>
   );
 };
