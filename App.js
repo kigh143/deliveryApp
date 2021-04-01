@@ -4,16 +4,7 @@ import Header from './components/Header/index';
 import DeliveryCard from './components/DeliveryCard/index';
 import List from './components/List/index';
 import MapViewComp from './components/MapViewComp/index';
-import {getFirstTenDeliveries} from './apiMock/index';
-
-interface Delivery {
-  id: string;
-  name: string;
-  lat: number;
-  lng: number;
-  address: string;
-  deliveryStatus?: 'delivering' | 'delivered';
-}
+import {getFirstTenDeliveries, getTotal} from './apiMock/index';
 
 const App = () => {
   const [layout, setLayout] = useState('map');
@@ -21,18 +12,36 @@ const App = () => {
   const [deliveries, setDeliveries] = useState([]);
 
   const changeLayout = () => {
-    layout === 'map' ? setLayout('list') : setLayout('map');
+    setLayout(prevState => {
+      if (prevState === 'map') {
+        return 'list';
+      } else {
+        return 'map';
+      }
+    });
   };
 
   const changeFilter = () => {
-    filter === 'delivered' ? setFilter('delivering') : setFilter('delivered');
+    setFilter(prevState => {
+      if (prevState === 'delivered') {
+        setDeliveries(
+          deliveries.filter(val => val.deliveryStatus === 'delivering'),
+        );
+        return 'delivering';
+      } else {
+        setDeliveries(
+          deliveries.filter(val => val.deliveryStatus === 'delivered'),
+        );
+        return 'delivered';
+      }
+    });
   };
 
   const fetchMorePost = () => {
     alert(89);
   };
 
-  const changeDeliveryStatus = () => {};
+  const changeDeliveryStatus = status => {};
 
   useEffect(() => {
     const fistTenDeliveries = getFirstTenDeliveries();
@@ -48,7 +57,7 @@ const App = () => {
         changeFilter={changeFilter}
         changeLayout={changeLayout}
         delivered={30}
-        total={50}
+        total={getTotal()}
       />
 
       {layout === 'map' ? (

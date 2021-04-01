@@ -17,3 +17,7 @@ export const markAsDelivering = () => {};
 export const formatAddress = address => {
   return address.trim().split(',');
 };
+
+export const getTotal = () => {
+  return length;
+};
