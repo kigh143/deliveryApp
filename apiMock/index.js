@@ -7,17 +7,22 @@ export const getFirstTenDeliveries = () => {
 };
 
 export const getMoreDeliveries = index => {
-  return deliveries.slice(index, 10);
+  if (index < length) {
+    const start = index;
+    const end = index + 10;
+    return deliveries.slice(start, end);
+  } else {
+    alert('list done');
+  }
 };
 
 export const markAsDelivered = () => {};
 
 export const markAsDelivering = () => {};
 
-export const formatAddress = address => {
-  return address.trim().split(',');
-};
-
 export const getTotal = () => {
-  return length;
+  const delivered = deliveries.filter(
+    val => val.deliveryStatus === 'delivered',
+  );
+  return {length, delivered: delivered.length};
 };

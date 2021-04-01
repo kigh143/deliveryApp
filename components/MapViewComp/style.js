@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingVertical: 10,
-    backgroundColor: 'rgba(200,200,200,.1)',
+    backgroundColor: 'rgba(200,200,200,.4)',
   },
   mapModalHeader: {
     padding: 10,
@@ -29,12 +29,16 @@ export default styles = StyleSheet.create({
     width: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,.5)',
     borderRadius: 25,
+    backgroundColor: 'rgba(255,255,255,.8)',
+    borderWidth: 1,
+    borderColor: '#f1f1f1',
+    elevation: 2,
   },
 
   closeButtonText: {
-    color: '#fff',
+    color: '#aaa',
     fontSize: 12,
+    textTransform: 'uppercase',
   },
 });

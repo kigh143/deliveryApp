@@ -9,7 +9,7 @@ const List = ({deliveries, fetchMorePost}) => {
         data={deliveries}
         renderItem={({item}) => <DeliveryCard key={item.id} delivery={item} />}
         keyExtractor={item => item.id}
-        onEndReachedThreshold={0}
+        onEndReachedThreshold={4}
         onEndReached={() => fetchMorePost()}
       />
     </View>

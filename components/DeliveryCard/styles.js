@@ -6,12 +6,13 @@ export default styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 2,
     marginVertical: 4,
-    padding: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     borderRadius: 4,
     marginHorizontal: 10,
   },
   name: {
-    fontSize: 14,
+    fontSize: 20,
     color: '#555',
     fontWeight: 'bold',
   },
@@ -47,21 +48,29 @@ export default styles = StyleSheet.create({
 
   delivering: {
     color: 'orange',
-    fontWeight: '800',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: 12,
   },
   pending: {
     color: 'red',
-    fontWeight: '800',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: 10,
   },
   delivered: {
     color: '#28b17b',
-    fontWeight: '800',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: 10,
   },
   bold: {
     fontWeight: 'bold',
     margin: 2,
   },
   statusTitle: {
-    fontSize: 12,
+    fontSize: 15,
+    marginBottom: 5,
+    color: '#aaa',
   },
 });

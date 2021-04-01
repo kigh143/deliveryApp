@@ -4,7 +4,13 @@ import Header from './components/Header/index';
 import DeliveryCard from './components/DeliveryCard/index';
 import List from './components/List/index';
 import MapViewComp from './components/MapViewComp/index';
-import {getFirstTenDeliveries, getTotal} from './apiMock/index';
+import {
+  getFirstTenDeliveries,
+  getTotal,
+  getMoreDeliveries,
+} from './apiMock/index';
+
+const total = getTotal();
 
 const App = () => {
   const [layout, setLayout] = useState('map');
@@ -24,21 +30,17 @@ const App = () => {
   const changeFilter = () => {
     setFilter(prevState => {
       if (prevState === 'delivered') {
-        setDeliveries(
-          deliveries.filter(val => val.deliveryStatus === 'delivering'),
-        );
         return 'delivering';
       } else {
-        setDeliveries(
-          deliveries.filter(val => val.deliveryStatus === 'delivered'),
-        );
         return 'delivered';
       }
     });
   };
 
   const fetchMorePost = () => {
-    alert(89);
+    const index = deliveries.length;
+    const new_deliveries = [...deliveries, ...getMoreDeliveries(index)];
+    setDeliveries(new_deliveries);
   };
 
   const changeDeliveryStatus = status => {};
@@ -56,8 +58,8 @@ const App = () => {
         activeLayout={layout}
         changeFilter={changeFilter}
         changeLayout={changeLayout}
-        delivered={30}
-        total={getTotal()}
+        delivered={total.delivered}
+        total={total.length}
       />
 
       {layout === 'map' ? (
