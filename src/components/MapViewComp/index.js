@@ -1,11 +1,15 @@
-import React, {useRef, useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useRef, useState, useContext} from 'react';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import DeliveryCard from '../DeliveryCard/index';
 import styles from './style';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-const MapViewComp = ({deliveries, changeDeliveryStatus}) => {
+import {DeliveriesContext} from '../../context';
+
+const MapViewComp = () => {
   const mapView = useRef();
-  const [activeDelivery, setActiveDelivery] = useState(null);
+  const {deliveries, setActiveDeliveryOnMap, activeDelivery} = useContext(
+    DeliveriesContext,
+  );
 
   return (
     <View style={styles.mapViewContainer}>
@@ -20,28 +24,30 @@ const MapViewComp = ({deliveries, changeDeliveryStatus}) => {
         }}>
         {deliveries.map(delivery => (
           <Marker
-            onPress={() => setActiveDelivery(delivery)}
+            onPress={() => setActiveDeliveryOnMap(delivery)}
             key={delivery.id}
             coordinate={{
               latitude: delivery.lat,
               longitude: delivery.lng,
-            }}
-          />
+            }}>
+            <Image
+              source={require('../../images/pin.png')}
+              style={styles.pin}
+              resizeMode="contain"
+            />
+          </Marker>
         ))}
       </MapView>
       {activeDelivery !== null ? (
         <View style={styles.mapModal}>
           <View style={styles.mapModalHeader}>
             <TouchableOpacity
-              onPress={() => setActiveDelivery(null)}
+              onPress={() => setActiveDeliveryOnMap(null)}
               style={styles.closeButton}>
               <Text style={styles.closeButtonText}>Close</Text>
             </TouchableOpacity>
           </View>
-          <DeliveryCard
-            delivery={activeDelivery}
-            changeDeliveryStatus={() => alert(90)}
-          />
+          <DeliveryCard delivery={activeDelivery} />
         </View>
       ) : null}
     </View>

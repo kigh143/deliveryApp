@@ -41,4 +41,8 @@ export default styles = StyleSheet.create({
     fontSize: 12,
     textTransform: 'uppercase',
   },
+  pin: {
+    height: 30,
+    width: 30,
+  },
 });

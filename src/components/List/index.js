@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, FlatList} from 'react-native';
+import {DeliveriesContext} from '../../context';
 import DeliveryCard from '../DeliveryCard/index';
 import styles from './style';
-const List = ({deliveries, fetchMorePost}) => {
+import {getMoreDeliveries} from '../../apiMock/index';
+
+const List = () => {
+  const {deliveries, addNewDeliveries} = useContext(DeliveriesContext);
+
+  const fetchMorePost = () => {
+    const index = deliveries.length;
+    const new_deliveries = getMoreDeliveries(index);
+    addNewDeliveries(new_deliveries);
+  };
+
   return (
     <View style={styles.listContainer}>
       <FlatList

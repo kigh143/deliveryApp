@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import {DeliveriesContext} from '../../context';
 import styles from './styles';
 
-const DeliveryCard = ({delivery, changeDeliveryStatus}) => {
+const DeliveryCard = ({delivery}) => {
+  const {changeDeliveryStatus} = useContext(DeliveriesContext);
   return (
     <View style={styles.card}>
       <View style={styles.cardBody}>
@@ -22,7 +24,7 @@ const DeliveryCard = ({delivery, changeDeliveryStatus}) => {
                 )}
               </>
             ) : (
-              <Text style={styles.pending}>Pending</Text>
+              <Text style={styles.pending}>No Status</Text>
             )}
           </Text>
         </View>
@@ -30,7 +32,7 @@ const DeliveryCard = ({delivery, changeDeliveryStatus}) => {
           {delivery.deliveryStatus == undefined && (
             <TouchableOpacity
               style={styles.button}
-              onPress={() => changeDeliveryStatus('delivering')}>
+              onPress={() => changeDeliveryStatus('delivering', delivery.id)}>
               <Text style={styles.buttonText}>Delivering</Text>
             </TouchableOpacity>
           )}
@@ -38,7 +40,7 @@ const DeliveryCard = ({delivery, changeDeliveryStatus}) => {
           {delivery.deliveryStatus == 'delivering' && (
             <TouchableOpacity
               style={styles.button}
-              onPress={() => changeDeliveryStatus('delivered')}>
+              onPress={() => changeDeliveryStatus('delivered', delivery.id)}>
               <Text style={styles.buttonText}>Delivered</Text>
             </TouchableOpacity>
           )}

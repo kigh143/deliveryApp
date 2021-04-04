@@ -16,13 +16,9 @@ export const getMoreDeliveries = index => {
   }
 };
 
-export const markAsDelivered = () => {};
-
-export const markAsDelivering = () => {};
-
 export const getTotal = () => {
   const delivered = deliveries.filter(
     val => val.deliveryStatus === 'delivered',
   );
-  return {length, delivered: delivered.length};
+  return {total: length, delivered: delivered.length};
 };
