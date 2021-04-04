@@ -46,7 +46,7 @@ const DeliveriesProvider = ({children}) => {
   };
 
   const updateDelivered = () => {
-    dispatch({type: 'UPDATE_TOTAL_DELIVERED', payload: deliveries});
+    dispatch({type: 'UPDATE_TOTAL_DELIVERED'});
   };
 
   const setActiveDeliveryOnMap = delivery => {

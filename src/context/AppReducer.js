@@ -44,9 +44,12 @@ export default (state, action) => {
         layout: state.layout === 'map' ? 'list' : 'map',
       };
     case 'SET_MORE_DELIVERIES':
+      const filtered = action.payload.filter(
+        value => value.deliveryStatus === state.filter,
+      );
       return {
         ...state,
-        deliveries: [...state.deliveries, ...action.payload],
+        deliveries: [...state.deliveries, ...filtered],
         deliveriesClone: [...state.deliveries, ...action.payload],
       };
 
