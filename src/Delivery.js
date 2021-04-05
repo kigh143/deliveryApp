@@ -12,12 +12,11 @@ const Delivery = () => {
   );
 
   useEffect(() => {
-    const deliveries = getFirstTenDeliveries();
-    fetchDeliveries(deliveries);
-
+    fetchDeliveries(getFirstTenDeliveries());
     const totals = getTotal();
     updateDeliveredTotal(totals);
   }, []);
+
   return (
     <SafeAreaView>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />

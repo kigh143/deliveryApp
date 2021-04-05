@@ -16,9 +16,10 @@ const Header = () => {
 
   const onchangeFilterTapped = () => {
     changeFilter();
-    const key = filter === 'delivered' ? 'delivering' : 'delivered';
-    const filteredDeliveries = deliveriesClone.filter(
-      value => value.deliveryStatus === key,
+    const filteredDeliveries = deliveriesClone.filter(value =>
+      filter === 'delivered'
+        ? value.deliveryStatus !== 'delivered'
+        : value.deliveryStatus === 'delivered',
     );
     setFilteredDeliveries(filteredDeliveries);
   };

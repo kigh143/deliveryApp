@@ -8,9 +8,7 @@ export const getFirstTenDeliveries = () => {
 
 export const getMoreDeliveries = index => {
   if (index < length) {
-    const start = index;
-    const end = index + 10;
-    return deliveries.slice(start, end);
+    return deliveries.slice(index, index + 10);
   } else {
     alert('list done');
   }
@@ -21,4 +19,12 @@ export const getTotal = () => {
     val => val.deliveryStatus === 'delivered',
   );
   return {total: length, delivered: delivered.length};
+};
+
+export const filterDeliveries = (data, filter_info) => {
+  return data.filter(value => {
+    return filter_info === 'delivered'
+      ? value.deliveryStatus === 'delivering'
+      : value.deliveryStatus === 'delivered';
+  });
 };

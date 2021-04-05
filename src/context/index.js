@@ -31,6 +31,7 @@ const DeliveriesProvider = ({children}) => {
     if (status === 'delivered') {
       updateDelivered();
     }
+    removeDeliveryWithChangedItem(id);
   };
 
   const updateDeliveredTotal = delivered => {
@@ -47,6 +48,10 @@ const DeliveriesProvider = ({children}) => {
 
   const updateDelivered = () => {
     dispatch({type: 'UPDATE_TOTAL_DELIVERED'});
+  };
+
+  const removeDeliveryWithChangedItem = id => {
+    dispatch({type: 'REMOVE_DELIVERY_FROM_ARRAY', payload: id});
   };
 
   const setActiveDeliveryOnMap = delivery => {

@@ -1,5 +1,10 @@
 export default (state, action) => {
   switch (action.type) {
+    case 'REMOVE_DELIVERY_FROM_ARRAY':
+      return {
+        ...state,
+        deliveries: state.deliveries.filter(val => val.id !== action.payload),
+      };
     case 'SET_TOTAL_DELIVERED':
       return {
         ...state,
@@ -13,18 +18,18 @@ export default (state, action) => {
           delivered: state.delivered.delivered + 1,
         },
       };
-
     case 'SET_ACTIVE_DELIVERY':
       return {
         ...state,
         activeDelivery: action.payload,
       };
-
     case 'FETCH_DELIVERIES':
       return {
         ...state,
-        deliveries: action.payload.filter(
-          value => value.deliveryStatus === state.filter,
+        deliveries: action.payload.filter(val =>
+          state.filter === 'delivered'
+            ? val.deliveryStatus === 'delivered'
+            : val.deliveryStatus !== 'delivered',
         ),
         deliveriesClone: action.payload,
       };
@@ -44,15 +49,11 @@ export default (state, action) => {
         layout: state.layout === 'map' ? 'list' : 'map',
       };
     case 'SET_MORE_DELIVERIES':
-      const filtered = action.payload.filter(
-        value => value.deliveryStatus === state.filter,
-      );
       return {
         ...state,
-        deliveries: [...state.deliveries, ...filtered],
-        deliveriesClone: [...state.deliveries, ...action.payload],
+        deliveriesClone: action.payload.more,
+        deliveries: action.payload.filtered,
       };
-
     case 'UPDATE_DELIVERIES_STATUS':
       const updatedState = state.deliveries.map(value => {
         if (value.id === action.payload.id) {
@@ -61,7 +62,6 @@ export default (state, action) => {
           return value;
         }
       });
-
       return {
         ...state,
         deliveries: [...updatedState],
