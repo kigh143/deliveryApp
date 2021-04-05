@@ -55,6 +55,7 @@ const DeliveriesProvider = ({children}) => {
   };
 
   const setActiveDeliveryOnMap = delivery => {
+    console.log(delivery);
     dispatch({type: 'SET_ACTIVE_DELIVERY', payload: delivery});
   };
 

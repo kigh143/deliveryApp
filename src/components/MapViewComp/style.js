@@ -4,42 +4,43 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
   mapViewContainer: {
     height: '92%',
-    // ...StyleSheet.absoluteFillObject,
   },
   map: {
     height: '100%',
-    // ...StyleSheet.absoluteFillObject,
   },
+
   mapModal: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    paddingVertical: 10,
-    backgroundColor: 'rgba(200,200,200,.4)',
+    paddingBottom: 15,
   },
+
   mapModalHeader: {
-    padding: 10,
+    padding: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
 
   closeButton: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
-    backgroundColor: 'rgba(255,255,255,.8)',
-    borderWidth: 1,
-    borderColor: '#f1f1f1',
-    elevation: 2,
+    borderRadius: 20,
+    backgroundColor: 'rgb(255,255,255)',
+    position: 'absolute',
+    top: -25,
+    zIndex: 20,
+    right: 6,
   },
 
   closeButtonText: {
-    color: '#aaa',
-    fontSize: 12,
+    color: '#222',
+    fontSize: 8,
     textTransform: 'uppercase',
+    fontWeight: 'bold',
   },
   pin: {
     height: 30,

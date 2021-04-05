@@ -40,7 +40,8 @@ const Header = () => {
       </TouchableOpacity>
       <View style={styles.tracker}>
         <Text style={styles.counter}>
-          {delivered.delivered} of {delivered.total}
+          <Text style={styles.delivered}>{delivered.delivered}</Text> of{' '}
+          <Text style={styles.total}>{delivered.total}</Text>
         </Text>
       </View>
       <TouchableOpacity

@@ -7,9 +7,9 @@ import {DeliveriesContext} from '../../context';
 
 const MapViewComp = () => {
   const mapView = useRef();
-  const {deliveries, setActiveDeliveryOnMap, activeDelivery} = useContext(
-    DeliveriesContext,
-  );
+  const {deliveries} = useContext(DeliveriesContext);
+
+  const [activeDelivery, setActiveDeliveryOnMap] = useState(null);
 
   return (
     <View style={styles.mapViewContainer}>
@@ -17,6 +17,9 @@ const MapViewComp = () => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         ref={mapView}
+        zoomTapEnabled={true}
+        showsBuildings={true}
+        showsMyLocationButton={true}
         onMapReady={() => {
           mapView.current.fitToSuppliedMarkers(
             deliveries.map(delivery => delivery),

@@ -38,8 +38,13 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  counter: {
+  delivered: {
+    color: '#28b17b',
+    fontWeight: 'bold',
     fontSize: 20,
+  },
+  total: {
+    color: '#000',
     fontWeight: 'bold',
   },
 });
