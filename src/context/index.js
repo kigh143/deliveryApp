@@ -30,8 +30,9 @@ const DeliveriesProvider = ({children}) => {
     dispatch({type: 'UPDATE_DELIVERIES_STATUS', payload: {status, id}});
     if (status === 'delivered') {
       updateDelivered();
+      removeDeliveryWithChangedItem(id);
+    } else {
     }
-    removeDeliveryWithChangedItem(id);
   };
 
   const updateDeliveredTotal = delivered => {

@@ -3,7 +3,11 @@ import deliveries from '../model/data.json';
 const length = deliveries.length;
 
 export const getFirstTenDeliveries = () => {
-  return deliveries.slice(0, 10);
+  if (length > 10) {
+    return deliveries.slice(0, 10);
+  }
+
+  return deliveries;
 };
 
 export const getMoreDeliveries = index => {

@@ -65,6 +65,7 @@ export default (state, action) => {
       return {
         ...state,
         deliveries: [...updatedState],
+        activeDelivery: updatedState.find(val => val.id === action.payload.id),
       };
     default:
       return state;

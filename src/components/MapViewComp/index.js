@@ -1,15 +1,34 @@
 import React, {useRef, useState, useContext} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, Platform} from 'react-native';
 import DeliveryCard from '../DeliveryCard/index';
 import styles from './style';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {DeliveriesContext} from '../../context';
+import {getMoreDeliveries} from '../../apiMock/index';
 
 const MapViewComp = () => {
   const mapView = useRef();
-  const {deliveries} = useContext(DeliveriesContext);
+  const {
+    deliveries,
+    setActiveDeliveryOnMap,
+    activeDelivery,
+    addNewDeliveries,
+    deliveriesClone,
+    filter,
+  } = useContext(DeliveriesContext);
 
-  const [activeDelivery, setActiveDeliveryOnMap] = useState(null);
+  const fetchMore = () => {
+    const new_deliveries = [
+      ...deliveriesClone,
+      ...getMoreDeliveries(deliveriesClone.length),
+    ];
+    const filtered = new_deliveries.filter(val =>
+      filter === 'delivered'
+        ? val.deliveryStatus === 'delivered'
+        : val.deliveryStatus !== 'delivered',
+    );
+    addNewDeliveries({more: new_deliveries, filtered});
+  };
 
   return (
     <View style={styles.mapViewContainer}>
@@ -17,6 +36,7 @@ const MapViewComp = () => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         ref={mapView}
+        onPanDrag={e => fetchMore()}
         zoomTapEnabled={true}
         showsBuildings={true}
         showsMyLocationButton={true}
@@ -41,7 +61,8 @@ const MapViewComp = () => {
           </Marker>
         ))}
       </MapView>
-      {activeDelivery !== null ? (
+      {activeDelivery !== null &&
+      deliveries.find(val => val.id === activeDelivery.id) ? (
         <View style={styles.mapModal}>
           <View style={styles.mapModalHeader}>
             <TouchableOpacity
